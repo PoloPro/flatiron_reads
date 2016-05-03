@@ -1,6 +1,10 @@
 <div>
-  <h2><%= @book.title %></h2>
-  <h4>by <em><%= @book.author.name %></em></h4>
+  <hr>
+
+  <div>
+    <h2><%= @book.title %></h2>
+    <h4>by <em><%= @book.author.name %></em></h4>
+  </div>
 
   <ul class="list-inline">
     <% score = @book.average_rating.to_i %>
@@ -11,7 +15,31 @@
     <% end %>
   </ul>
 
-  <p><%= @book.synopsis %></p>
-  <p class="parent"><img src="<%= @book.image_url %>"></p>
+  <div>
+    <%= @book.synopsis %>
+  </div>
+
+  <div class="parent">
+    <img src="<%= @book.image_url %>">
+  </div>
+
+  <hr>
+
+  <% @book.reviews.each do |review| %>
+  <div>
+    <strong><%= review.user.name %></strong> <small>rated it</small>
+    <ul class="list-inline">
+      <% review.rating.times do %>
+      <li class="tiny-star">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+      </li>
+      <% end %>
+    </ul>
+    <p>
+      <%= review.description %> <small>
+      <%= link_to "visit user profile", review.user %></small>
+    </p>
+  </div>
+  <% end %>
 
 </div>

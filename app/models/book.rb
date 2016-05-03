@@ -16,7 +16,7 @@ class Book < ActiveRecord::Base
     reviews.each do |review|
       rating_sum += review.rating
     end
-    rating_sum/reviews.count
+    rating_sum / reviews.count
   end
 
 end
