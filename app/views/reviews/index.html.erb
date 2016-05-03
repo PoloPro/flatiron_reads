@@ -1,0 +1,26 @@
+<h1>Reviews</h1>
+
+<% @reviews.each do |review| %>
+
+<div>
+  <hr>
+  <h2><%= review.book.title %></h2>
+  <h3><%= review.book.author.name %></h3>
+
+  <ul class="list-inline">
+    <% review.rating.times do %>
+    <li class="star">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+    </li>
+    <% end %>
+  </ul>
+
+  <p class="parent">
+    <img src="<%= review.book.image_url %>">
+  </p>
+
+  <p><%= review.description %></p>
+  <p><small><%= review.user.name %></small></p>
+</div>  
+
+<% end %>

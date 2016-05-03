@@ -26,10 +26,24 @@ bride.author = goldman
 pp.author = austen
 moby_dick.author = melville
 
-bride.review = review_1
-pp.review = review_2
-moby_dick.review = review_3
+bride.reviews << review_1
+pp.reviews << review_2
+moby_dick.reviews << review_3
 
 review_1.user = user_1
 review_2.user = user_2
 review_3.user = user_3
+
+bride.save
+pp.save
+moby_dick.save
+
+review_1.save
+review_2.save
+review_3.save
+
+melville.save
+austen.save
+goldman.save
+
+

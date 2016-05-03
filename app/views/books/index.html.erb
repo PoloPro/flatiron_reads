@@ -3,10 +3,21 @@
 <% @books.each do |book| %>
 
 <div>
+  <hr>
   <h2><%= book.title %></h2>
-  <h3><em><%= book.author %></em></h3>
+  <h4>by <em><%= book.author.name %></em></h4>
+
+  <ul class="list-inline">
+    <% score = book.average_rating.to_i %>
+    <% score.times do %>
+    <li class="star">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+    </li>
+    <% end %>
+  </ul>
+
   <p><%= book.synopsis %></p>
-  <p><img src="<%= book.image_url %>"></p>
+  <p class="parent"><img src="<%= book.image_url %>"></p>
 </div>
 
 <% end %>

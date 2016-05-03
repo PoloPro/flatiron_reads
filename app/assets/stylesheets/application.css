@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.star {
+  width: 50px;
+}
+
+img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+}

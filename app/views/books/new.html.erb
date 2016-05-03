@@ -1,0 +1,24 @@
+<%= form_for (@book) do |f| %>
+
+<div>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>  
+
+<div>
+  <%= f.label :synopsis %>
+  <%= f.text_field :synopsis %>
+</div>
+
+<div>
+  <%= f.label :image_url, "Image URL" %>
+  <%= f.url_field :image_url %>
+</div>  
+
+<div>
+  <%= f.label :author %>
+  <%= f.collection_select :author, Author.all, :id, :name %>
+</div>
+
+<%= f.submit %> 
+<% end %>
