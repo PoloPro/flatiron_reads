@@ -1,7 +1,11 @@
 <h1>Authors</h1>
 
 <% @authors.each do |author| %>
-
-
+<h3><%= link_to author.name, author %></h3>
+<ul class="list-inline">
+  Author of: <% author.books.each do |book| %>
+  <li><%= link_to book.title, book %></li>
+  <% end %>
+</ul>
 <% end %>
 

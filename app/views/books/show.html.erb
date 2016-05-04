@@ -1,45 +1,85 @@
 <div>
   <hr>
 
+  <!-- The title and author of the book -->
   <div>
-    <h2><%= @book.title %></h2>
-    <h4>by <em><%= @book.author.name %></em></h4>
-  </div>
+    <h2><%= @book.title %><br>
+      <small>by <%= @book.author.name %></small></h2>
+    </div>
 
-  <ul class="list-inline">
-    <% score = @book.average_rating.to_i %>
-    <% score.times do %>
-    <li class="star">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
-    </li>
-    <% end %>
-  </ul>
-
-  <div>
-    <%= @book.synopsis %>
-  </div>
-
-  <div class="parent">
-    <img src="<%= @book.image_url %>">
-  </div>
-
-  <hr>
-
-  <% @book.reviews.each do |review| %>
-  <div>
-    <strong><%= review.user.name %></strong> <small>rated it</small>
+    <!-- The average rating of the book, shown in star images -->
     <ul class="list-inline">
-      <% review.rating.times do %>
-      <li class="tiny-star">
+      <% score = @book.average_rating.to_i %>
+      <% score.times do %>
+      <li class="star">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
       </li>
       <% end %>
     </ul>
-    <p>
-      <%= review.description %> <small>
-      <%= link_to "visit user profile", review.user %></small>
-    </p>
-  </div>
-  <% end %>
 
+    <!-- The synopsis of the book -->
+    <div class="">
+      <%= @book.synopsis %>
+    </div>
+
+    <!-- The cover art for the book, trimmed to 300px wide -->
+    <div class="parent">
+      <img src="<%= @book.image_url %>">
+    </div>
+
+    <hr>
+
+    <!-- A list of all the reviews, with star rating, user, and description -->
+    <h4>Reviews <small>(<%= @book.reviews.count %>)</small></h4>
+    <% @book.reviews.each do |review| %>
+    <div>
+      <strong><%= review.user.name %></strong> <small>rated it</small>
+      <ul class="list-inline">
+        <% review.rating.times do %>
+        <li class="tiny-star">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+        </li>
+        <% end %>
+      </ul>
+      <p>
+        <%= review.description %> <small>
+        <%= link_to "visit user profile", review.user %></small>
+      </p>
+    </div>
+    <% end %>
+
+    <hr>
+
+    <!-- Form to add a new review to the book, needs to check if book already has a review from that user -->
+    <div>
+      <h4>Add a new review</h4>
+      <%= form_for @book.reviews.build do |f| %>
+
+      <div>
+        <small><%= f.label :user_name %></small><br>
+        <%= f.text_field :user_name %>
+      </div>
+
+      <div>
+        <small><%= f.label :rating %></small><br>
+        <%= f.number_field :rating %>
+      </div>
+
+      <div>
+        <small><%= f.label :description %></small><br>
+        <%= f.text_area :description, size: "35x3" %>
+      </div>
+
+      <br>
+
+      <%= f.submit %>
+      <% end %>
+    </div>
+    <hr>
+    <br>
+    <!-- Button to delete the book from the database, with confirm message -->
+    <div>
+      <%= link_to "Delete this book", @book, method: :delete, data: { confirm: "Would you really like to delete this book?" } %>
+    </div>
+  </div>
 </div>

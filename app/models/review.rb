@@ -9,6 +9,15 @@ class Review < ActiveRecord::Base
 
   validates :book_id, presence: true
   validates :user_id, presence: true
-  validates :rating, presence: true
+  validates :rating, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
+
+  def user_name=(name)
+    self.user = User.find_or_create_by(name: name)
+  end
+
+  def user_name
+    self.user
+  end
+
 end
