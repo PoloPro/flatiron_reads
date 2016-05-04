@@ -1,0 +1,39 @@
+<h2>Hi <%=@user.name%>! Here are your reviews:</h2>
+<br>
+<% @user.reviews.each do |review| %>
+
+<div>
+  <% if review.book %>
+  <%= link_to review.book.title, review.book %> <small>by <%= review.book.author.name %></small>
+  <% else %>
+  <p>error [no book found]</p>
+  <% end %>
+</div>
+
+<div>
+ <ul class="list-inline">
+  <% score = review.rating.to_i %>
+  <% score.times do %>
+  <li class="medium-star">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+    <% end %>
+  </li>
+</ul>
+</div>
+
+<div>
+ <blockquote>
+   "<%= review.description %>"
+ </blockquote>
+</div> 
+
+<% end %>
+
+<hr>
+<br>
+
+<ul class="list-inline">
+  <li><%= link_to "Edit your profile", edit_user_path(@user) %></li>
+  <li><%= link_to "Delete your profile", @user, method: :delete, data: { confirm: "Would you really like to delete your profile?" } %></li>
+</ul>
+

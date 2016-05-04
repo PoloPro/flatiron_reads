@@ -46,7 +46,12 @@
     <h4>Reviews <small>(<%= @book.reviews.count %>)</small></h4>
     <% @book.reviews.each do |review| %>
     <div>
-      <strong><%= review.user.name %></strong> <small>rated it</small>
+      <% if review.user %>
+      <strong><%= review.user.name %></strong>
+      <% else %>
+      <strong>Anonymous</strong> 
+      <% end %>
+      <small>rated it</small>
       <ul class="list-inline">
         <% review.rating.times do %>
         <li class="tiny-star">
@@ -97,6 +102,7 @@
     <ul class="list-inline">
       <li><%= link_to "Edit this book", edit_book_path(@book) %></li>
       <li><%= link_to "Delete this book", @book, method: :delete, data: { confirm: "Would you really like to delete this book?" } %></li>
-    </div>
+    </ul>
   </div>
+</div>
 </div>

@@ -1,0 +1,19 @@
+<h1>Welcome!</h1>
+<h4>Please enter your information below:</h4><br>
+
+<%= form_for (@user) do |f| %>
+<div>
+  <p>
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :profile_picture, "Profile Picture:" %>
+    <%= f.text_field :profile_picture %>
+  </p>
+  <br>
+</div>  
+
+<%= f.submit %> 
+<% end %>

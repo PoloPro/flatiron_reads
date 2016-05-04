@@ -1,0 +1,16 @@
+<h2>Please select your profile</h2>
+
+<% @users.each do |user| %>
+<div>
+  <hr>
+  <h3><%= link_to user.name, user %> </h3>
+  <a href= "/users/<%=user.id%>">
+    <h4 class="parent-200">
+      <img src="<%= user.profile_picture %>">
+    </h4>
+  </a>
+</div>  
+<% end %>
+<hr>
+
+<h3><%= link_to "or create a new one", new_user_path %></h3>

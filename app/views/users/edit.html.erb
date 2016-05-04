@@ -1,0 +1,19 @@
+<h1>Let's edit your information...</h1>
+<br>
+
+<%= form_for (@user) do |f| %>
+<div>
+  <p>
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :profile_picture, "Profile Picture:" %>
+    <%= f.text_field :profile_picture %>
+  </p>
+  <br>
+</div>  
+
+<%= f.submit %> 
+<% end %>

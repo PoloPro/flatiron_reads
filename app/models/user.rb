@@ -5,4 +5,10 @@ class User < ActiveRecord::Base
   has_many :books, through: :reviews
 
   validates :name, presence: true, uniqueness: true
+
+  after_destroy :destroy_reviews
+
+  def destroy_reviews
+    self.reviews.delete_all
+  end
 end

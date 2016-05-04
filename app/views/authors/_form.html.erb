@@ -1,0 +1,31 @@
+<%= form_for (@author) do |f| %>
+
+<div>
+  <%= f.label :name, "Author Name" %>
+  <%= f.text_field :name %>
+</div>  
+
+<div>
+  <h4>Add/edit the author's books</h4>
+  <%= f.fields_for :books do |b| %>
+
+  <div>
+    <%= b.label :title, "Book Title" %>
+    <%= b.text_field :title %>
+  </div>
+
+  <div>
+    <%= b.label :synopsis %>
+    <%= b.text_area :synopsis %>
+  </div>
+
+  <div>
+    <%= b.label :image_url, "Image URL" %>
+    <%= b.url_field :image_url %>
+  </div>
+
+  <hr>
+  <% end%>
+
+  <%= f.submit %> 
+  <% end %>
