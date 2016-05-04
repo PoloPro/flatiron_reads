@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
  end
 
  def create
+   byebug
    @review = Review.new(review_params)
    
    if @review.save
@@ -49,7 +50,7 @@ class ReviewsController < ApplicationController
  private 
  
  def review_params
-   params.require(:review).permit(:user_id, :book_id, :rating, :description)
+   params.require(:review).permit(:user_name, :book_id, :rating, :description)
  end
 
 end
