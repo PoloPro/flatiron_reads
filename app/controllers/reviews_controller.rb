@@ -17,34 +17,25 @@ class ReviewsController < ApplicationController
  end
 
  def create
-   byebug
    @review = Review.new(review_params)
-   
-   if @review.save
-     redirect_to @review 
-   else
-     redirect_to :"books"
-   end
+   @review.save
 
+   redirect_to "/books/#{review_params[:book_id]}" 
  end
 
  def update
    @review = Review.find(params[:id])
    @review.update(review_params)
 
-   if @review.save 
-     redirect_to @review 
-   else 
-     render :edit
-   end
-
+   redirect_to "/books/#{review_params[:book_id]}" 
  end
 
  def destroy
    @review = Review.find(params[:id])
+   @book = Book.find(@review.book_id)
    @review.destroy
    flash[:notice] = "Review deleted."
-   redirect_to reviews_path
+   redirect_to @book
  end
 
  private 

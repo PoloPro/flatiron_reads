@@ -4,27 +4,40 @@
   <!-- The title and author of the book -->
   <div>
     <h2><%= @book.title %><br>
-      <small>by <%= @book.author.name %></small></h2>
+      <small>by <%= link_to @book.author.name, @book.author %></small></h2>
     </div>
 
-    <!-- The average rating of the book, shown in star images -->
-    <ul class="list-inline">
-      <% score = @book.average_rating.to_i %>
-      <% score.times do %>
-      <li class="star">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
-      </li>
-      <% end %>
-    </ul>
+    <div class="row">
 
-    <!-- The synopsis of the book -->
-    <div class="">
-      <%= @book.synopsis %>
-    </div>
+      <!-- The cover art for the book, trimmed to 300px wide -->
+      <div class="col-sm-4">
+        <div class="parent-300">
+          <img src="<%= @book.image_url %>">
+        </div>
+      </div>
 
-    <!-- The cover art for the book, trimmed to 300px wide -->
-    <div class="parent">
-      <img src="<%= @book.image_url %>">
+      <div class="clearfix visible-xs"></div>
+
+      <!-- The synopsis of the book -->
+      <div class="col-sm-4">
+        <div class="">
+          <%= @book.synopsis %>
+        </div>
+
+        <br>
+
+        <!-- The average rating of the book, shown in star images -->
+        <h4>Average Rating <small>(<%= @book.reviews.count %>) reviews</small></h4>
+        <ul class="list-inline">
+          <% score = @book.average_rating.to_i %>
+          <% score.times do %>
+          <li class="star">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+          </li>
+          <% end %>
+        </ul>
+
+      </div>
     </div>
 
     <hr>
@@ -41,14 +54,18 @@
         </li>
         <% end %>
       </ul>
+
       <p>
-        <%= review.description %> <small>
-        <%= link_to "visit user profile", review.user %></small>
+        <%= review.description %>
       </p>
+
+      <ul class="list-inline">
+        <li><small><%= link_to "visit user profile", review.user %></small></li>
+        <li><small><%= link_to "delete review", review, method: :delete, data: { confirm: "Would you really like to remove this review?"} %></small></li>
+      </ul>
+      <hr>
     </div>
     <% end %>
-
-    <hr>
 
     <!-- Form to add a new review to the book, needs to check if book already has a review from that user -->
     <div>
@@ -61,17 +78,14 @@
         <small><%= f.label :user_name %></small><br>
         <%= f.text_field :user_name %>
       </div>
-
       <div>
         <small><%= f.label :rating %></small><br>
         <%= f.number_field :rating %>
       </div>
-
       <div>
         <small><%= f.label :description %></small><br>
         <%= f.text_area :description, size: "35x3" %>
       </div>
-
       <br>
 
       <%= f.submit %>
@@ -80,8 +94,9 @@
     <hr>
     <br>
     <!-- Button to delete the book from the database, with confirm message -->
-    <div>
-      <%= link_to "Delete this book", @book, method: :delete, data: { confirm: "Would you really like to delete this book?" } %>
+    <ul class="list-inline">
+      <li><%= link_to "Edit this book", edit_book_path(@book) %></li>
+      <li><%= link_to "Delete this book", @book, method: :delete, data: { confirm: "Would you really like to delete this book?" } %></li>
     </div>
   </div>
 </div>

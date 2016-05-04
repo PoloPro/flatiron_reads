@@ -18,12 +18,10 @@
   width: 50px;
 }
 
-.tiny-star {
-  width: 25px;
+.medium-star {
+  width: 35px;
 }
 
-img {
-  display: block;
-  width: 100% !important;
-  height: auto !important;
+.tiny-star {
+  width: 25px;
 }
