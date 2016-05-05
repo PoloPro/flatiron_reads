@@ -1,4 +1,38 @@
 <h1>Books</h1>
+<ul class="list-inline">
+
+  <!-- Create a new book -->
+  <li>
+    <h3><small><%= link_to "create a new book", new_book_path, class: "link-unstyled" %></small></h3>
+  </li>
+
+  <li>
+    <h3><small>|</small></h3>
+  </li>
+
+  <li>
+    <%= form_for Book.new, url: "search", class: "form-inline" do |b| %>
+
+    <!-- Label for search bar -->
+    <div>
+      <h3><small>search for a book</small>
+
+        <!-- Autocompleted search field -->
+        <%= b.text_field :title, list: "title_autocomplete", class:"input-sm" %>
+        <datalist id="title_autocomplete">
+          <%= Book.all.each do |book| %>
+          <option value="<%= book.title %>"></option>
+          <% end %>
+        </datalist>
+
+        <!-- Search button -->
+        <%= b.submit "Search", class: "btn btn-default btn-sm" %>
+      </h3>
+    </div>
+    <% end %>
+  </li>
+
+</ul>
 
 <% @books.each do |book| %>
 
@@ -12,7 +46,7 @@
 
     <!-- The cover art for the book, trimmed to 300px wide -->
     <div class="col-sm-4">
-    <div class="parent-300">
+      <div class="parent-300">
         <img src="<%= book.image_url %>">
       </div>
     </div>

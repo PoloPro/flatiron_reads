@@ -1,24 +1,49 @@
-<%= form_for (@book) do |f| %>
 
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>  
+<%= form_for @book do |f| %>
 
-<div>
-  <%= f.label :synopsis %>
-  <%= f.text_area :synopsis %>
+<div class="form-group">
+  <%= f.label :title, class: "control-label" %>
+  <div>
+    <%= f.text_field :title, class:"form-control" %>
+  </div>
 </div>
 
-<div>
-  <%= f.label :image_url, "Image URL" %>
-  <%= f.url_field :image_url %>
-</div>  
-
-<div>
-  <%= f.label :author %>
-  <%= f.collection_select :author, Author.all, :id, :name %>
+<div class="form-group">
+  <%= f.label :synopsis, class: "control-label" %>
+  <div>
+    <%= f.text_area :synopsis, class:"form-control" %>
+  </div>
 </div>
 
-<%= f.submit %> 
+<div class="form-group">
+  <%= f.label :image_url, "Image URL", class: "control-label" %>
+  <div>
+    <%= f.url_field :image_url, class:"form-control" %>
+  </div>
+</div> 
+
+<div class="col-sm-12"></div>
+
+<div class="form-group">
+<%= f.label :author_id, "Select an existing author", class: "control-label" %>
+  <div>
+    <%= f.collection_select :author, Author.all, :id, :name, class:"form-control", prompt: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label "or create a new author", class: "control-label" %>
+  <div>
+    <%= f.text_field :author_name, class:"form-control" %>
+  </div>
+</div>
+
+
+<div class="col-sm-12"></div>
+
+<div class="form-group">
+  <div>
+    <%= f.submit %>
+  </div> 
+</div>
 <% end %>

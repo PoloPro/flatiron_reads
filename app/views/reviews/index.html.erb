@@ -1,26 +1,39 @@
 <h1>Reviews</h1>
 
-<% @reviews.each do |review| %>
+<% Book.all.each do |book| %>
 
-<div>
-  <hr>
-  <h2><%= review.book.title %></h2>
-  <h3><%= review.book.author.name %></h3>
+<hr>
+<h2><%= link_to book.title, book %>
+  <small>by <%= link_to book.author.name, book.author %></small></h2>
+  <div class="parent-300">
+   <img src="<%= book.image_url %>">
+ </div>
 
-  <ul class="list-inline">
-    <% review.rating.times do %>
-    <li class="star">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
-    </li>
-    <% end %>
-  </ul>
+ <div>
+  <% book.reviews.each do |review| %>
 
-  <p class="parent">
-    <img src="<%= review.book.image_url %>">
-  </p>
+  <div><br>
+    <ul class="list-inline">
+     <% review.rating.times do %>
+     <li class="medium-star">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1000px-Gold_Star.svg.png">
+     </li>
+     <% end %>
+   </ul>
+ </div>
 
-  <p><%= review.description %></p>
-  <p><small><%= review.user.name %></small></p>
+ <div>
+  <blockquote>
+    "<%= review.description %>"
+    - <strong><%= review.user.name %></strong>
+  </blockquote>
+</div>
+
+<% end %>
+
 </div>  
 
 <% end %>
+
+<hr>
+<br>

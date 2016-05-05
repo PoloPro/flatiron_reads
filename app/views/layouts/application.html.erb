@@ -15,20 +15,22 @@
 <body>
 
   <div class="container">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/home">FlatironReads</a>
+        <a class="navbar-brand" href="/home"><thin>Flatiron</thin><strong>Reads</strong></a>
         </div>
         <ul class="nav navbar-nav">
           <li><%= link_to "Books", books_path %></li>
           <li><%= link_to "Authors", authors_path %></li>
           <li><%= link_to "Profile", users_path %></li>
         </ul>
-      </div>
-    </nav>
-    <%= yield %>
-  </div>
+
+      </ul>
+    </div>
+  </nav>
+  <%= yield %>
+</div>
 
 </body>
 </html>

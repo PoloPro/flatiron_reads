@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :authors
   resources :books
-  resources :reviews, except: [:index]
+  resources :reviews
   resources :users
+
   get "/home", to: "home#index"
+  post "search", to: "books#search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

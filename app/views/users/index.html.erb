@@ -4,11 +4,15 @@
 <div>
   <hr>
   <h3><%= link_to user.name, user %> </h3>
-  <a href= "/users/<%=user.id%>">
-    <h4 class="parent-200">
-      <img src="<%= user.profile_picture %>">
-    </h4>
+  <a href= "/users/<%= user.id %>">
+    <div class="parent-100">
+      <img src="<%= user.profile_picture %>" alt="No profile picture available">
+    </div>
   </a>
+  <div>
+  <small><%= user.reviews.count %> review(s) submitted</small><br>
+  <small>User since <%= user.created_at.strftime("%b %e, %Y") %></small>
+  </div>
 </div>  
 <% end %>
 <hr>

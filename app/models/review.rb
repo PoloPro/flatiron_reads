@@ -23,9 +23,11 @@ class Review < ActiveRecord::Base
   end
 
   def one_review_per_book
-    all_reviews = Book.find(book_id).reviews
-    all_reviews.each do |review|
-      errors.add(:base, "cannot submit multiple reviews for the same book") if (review.user == self.user)
+    if book_id
+      all_reviews = Book.find(book_id).reviews
+      all_reviews.each do |review|
+        errors.add(:base, "cannot submit multiple reviews for the same book") if (review.user == self.user)
+      end
     end
   end
 

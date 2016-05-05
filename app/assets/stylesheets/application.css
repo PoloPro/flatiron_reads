@@ -14,7 +14,7 @@
  *= require_self
  */
 
-.star {
+ .star {
   width: 50px;
 }
 
@@ -24,4 +24,16 @@
 
 .tiny-star {
   width: 25px;
+}
+
+.nav-search {
+  float: right;
+}
+
+.center-h { text-align: center }
+
+img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
 }

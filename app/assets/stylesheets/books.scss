@@ -3,12 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .parent-300 {
-  width: 300px;
+width: 300px;
 }
 
 img {
-  display: block;
-  width: 100% !important;
-  height: auto !important;
+display: block;
+width: 100% !important;
+height: auto !important;
 }
 
+.link-unstyled {
+color: inherit;
+text-decoration: inherit;
+}
+
+.link-unstyled:link {
+color: inherit;
+text-decoration: inherit;
+}
